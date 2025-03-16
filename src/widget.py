@@ -1,5 +1,5 @@
-from typing import Union
 from datetime import datetime
+from typing import Union
 
 from src.masks import get_mask_account
 from src.masks import get_mask_card_number
@@ -23,10 +23,7 @@ def mask_account_card(account_card: Union[str]) -> Union[str]:
         return f"{str_card_name} {get_mask_card_number(str_card_numbers)}"
 
 
-def get_date(date_time: Union[str]) -> Union[str]:
+def get_date(my_date: str) -> str:
     """Функция возвращает дату в формате ДД.ММ.ГГГГ"""
-    date = date_time[:10]
-    date_split = date.split("-")
-    date_revers = date_split[::-1]
-    final_date = ".".join(date_revers)
-    return final_date
+    final_date = datetime.strptime(my_date, "%Y-%m-%dT%H:%M:%S.%f")
+    return final_date.strftime("%d.%m.%Y")
