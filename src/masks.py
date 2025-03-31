@@ -8,7 +8,7 @@ def get_mask_card_number(card_number: Union[str]) -> Union[str]:
         masked_number = card_number[0:4] + " " + card_number[4:6] + "** **** " + card_number[-4:]
         return masked_number
     else:
-        return "Проверьте правильность введенного номера карты!"
+        raise TypeError("Неверный формат!")
 
 
 def get_mask_account(account_number: Union[str]) -> Union[str]:
@@ -18,4 +18,4 @@ def get_mask_account(account_number: Union[str]) -> Union[str]:
         masked_account = "**" + account_number[-4:]
         return masked_account
     else:
-        return "Проверьте правильность введенного номера счета!"
+        raise TypeError("Неверный формат!")
