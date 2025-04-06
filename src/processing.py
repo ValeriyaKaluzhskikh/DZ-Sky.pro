@@ -1,4 +1,7 @@
-def filter_by_state(operations: list, state: str = "EXECUTED") -> list:
+from typing import Union
+
+
+def filter_by_state(operations: list, state: Union[str] = "EXECUTED") -> list:
     """Функция фильтрует операции в списке по ключу 'state'"""
     list_of_operation = []
     for item in operations:

@@ -23,7 +23,25 @@ def mask_account_card(account_card: Union[str]) -> Union[str]:
         return f"{str_card_name} {get_mask_card_number(str_card_numbers)}"
 
 
-def get_date(my_date: str) -> str:
-    """Функция возвращает дату в формате ДД.ММ.ГГГГ"""
-    final_date = datetime.strptime(my_date, "%Y-%m-%dT%H:%M:%S.%f")
-    return final_date.strftime("%d.%m.%Y")
+def get_date(my_date: Union[str]) -> Union[str]:
+    """Функция конвертирования даты"""
+    date_formats = [
+        "%Y-%m-%dT%H:%M:%S.%f",
+        "%Y-%m-%dT%H:%M:%S",
+        "%Y-%m-%dT%H:%M",
+        "%Y-%m-%dT%H",
+        "%Y-%m-%dT",
+        "%Y-%m",
+        "%Y",
+        "%H:%M:%S.%f",
+        "%M:%S.%f",
+        "%S.%f",
+        "%f",
+    ]
+    for fmt in date_formats:
+        try:
+            date_obj = datetime.strptime(my_date, fmt)
+            return date_obj.strftime("%d.%m.%Y")
+        except ValueError:
+            continue
+    raise ValueError("Неверный формат даты")
