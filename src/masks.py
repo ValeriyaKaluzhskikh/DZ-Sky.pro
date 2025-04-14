@@ -1,6 +1,8 @@
 from typing import Union
+from src.decorators import log
 
 
+@log()
 def get_mask_card_number(card_number: Union[str]) -> Union[str]:
     """Функция принимает на вход номер карты в виде числа и
     возвращает маску номера  XXXX XX** **** XXXX"""
@@ -11,6 +13,7 @@ def get_mask_card_number(card_number: Union[str]) -> Union[str]:
         raise TypeError("Неверный формат!")
 
 
+@log()
 def get_mask_account(account_number: Union[str]) -> Union[str]:
     """Функция принимает на вход номер счета в виде числа и
     возвращает маску номера **ХХХХ"""

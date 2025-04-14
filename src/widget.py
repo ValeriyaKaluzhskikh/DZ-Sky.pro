@@ -3,8 +3,10 @@ from typing import Union
 
 from src.masks import get_mask_account
 from src.masks import get_mask_card_number
+from src.decorators import log
 
 
+@log()
 def mask_account_card(account_card: Union[str]) -> Union[str]:
     """Маскирует номер и карты, и счета"""
     account_card_split = account_card.split()
@@ -23,25 +25,11 @@ def mask_account_card(account_card: Union[str]) -> Union[str]:
         return f"{str_card_name} {get_mask_card_number(str_card_numbers)}"
 
 
-def get_date(my_date: Union[str]) -> Union[str]:
-    """Функция конвертирования даты"""
-    date_formats = [
-        "%Y-%m-%dT%H:%M:%S.%f",
-        "%Y-%m-%dT%H:%M:%S",
-        "%Y-%m-%dT%H:%M",
-        "%Y-%m-%dT%H",
-        "%Y-%m-%dT",
-        "%Y-%m",
-        "%Y",
-        "%H:%M:%S.%f",
-        "%M:%S.%f",
-        "%S.%f",
-        "%f",
-    ]
-    for fmt in date_formats:
-        try:
-            date_obj = datetime.strptime(my_date, fmt)
-            return date_obj.strftime("%d.%m.%Y")
-        except ValueError:
-            continue
-    raise ValueError("Неверный формат даты")
+@log()
+def get_date(input_date: str) -> str:
+    """Функция переводит дату в формат ДД.ММ.ГГГГ"""
+    try:
+        formated_date = datetime.strptime(input_date[:10], "%Y-%m-%d")
+        return f"{formated_date.day:02}.{formated_date.month:02}.{formated_date.year}"
+    except ValueError:
+        return "Проверьте правильность ввода!"
