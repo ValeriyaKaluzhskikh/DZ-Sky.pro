@@ -18,5 +18,3 @@ def test_get_mask_card_number(card: Any, mask: Any) -> Any:
 def test_get_mask_account(account: Any, mask: Any) -> Any:
     """Тестирует верно введенные данные для счета"""
     assert get_mask_account(account) == mask
-
-

@@ -1,5 +1,6 @@
 import datetime
-from typing import Any, Optional
+from typing import Any
+from typing import Optional
 
 
 def log(filename: Optional[str] = None) -> Any:
@@ -66,5 +67,7 @@ def log(filename: Optional[str] = None) -> Any:
                         file.write(full_log)
                 else:
                     print(full_log)
+
         return wrapper
+
     return decorator_1

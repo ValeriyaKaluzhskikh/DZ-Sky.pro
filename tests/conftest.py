@@ -2,6 +2,7 @@ from typing import Any
 
 import pytest
 
+
 @pytest.fixture
 def invalid_date_string() -> str:
     """Фикстура для проверки преобразования даты - несуществующая дата"""
@@ -182,5 +183,3 @@ def make_descriptions1() -> list:
 @pytest.fixture
 def make_descriptions3() -> list:
     return ["Ошибка! Отсутствует описание транзакции", "Перевод со счета на счет"]
-
-

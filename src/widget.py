@@ -1,9 +1,9 @@
 from datetime import datetime
 from typing import Union
 
+from src.decorators import log
 from src.masks import get_mask_account
 from src.masks import get_mask_card_number
-from src.decorators import log
 
 
 @log()
