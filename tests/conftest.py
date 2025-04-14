@@ -4,6 +4,24 @@ import pytest
 
 
 @pytest.fixture
+def invalid_date_string() -> str:
+    """Фикстура для проверки преобразования даты - несуществующая дата"""
+    return "1999-12-32"
+
+
+@pytest.fixture
+def another_invalid_date_string() -> str:
+    """Фикстура для проверки преобразования даты - не преобразумый формат данных"""
+    return "the date"
+
+
+@pytest.fixture
+def empty_date_string() -> str:
+    """Фикстура для проверки преобразования даты - пустая строка"""
+    return ""
+
+
+@pytest.fixture
 def test_dict() -> Any:
     return (
         {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},

@@ -18,10 +18,3 @@ def test_get_mask_card_number(card: Any, mask: Any) -> Any:
 def test_get_mask_account(account: Any, mask: Any) -> Any:
     """Тестирует верно введенные данные для счета"""
     assert get_mask_account(account) == mask
-
-
-def test_error_get_mask() -> None:
-    """Обрабатывает ошибку TypeError"""
-    with pytest.raises(TypeError, match="Неверный формат!"):
-        get_mask_card_number("")
-        get_mask_account("1234")

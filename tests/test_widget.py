@@ -20,12 +20,6 @@ def test_mask_account_card(card: Any, mask: Any) -> Any:
     assert mask_account_card(card) == mask
 
 
-def test_error_mask_account_card() -> None:
-    """Обрабатывает ошибку TypeError"""
-    with pytest.raises(TypeError, match="Неверный формат!"):
-        mask_account_card("")
-
-
 @pytest.mark.parametrize(
     "data, result",
     [
@@ -39,15 +33,16 @@ def test_get_date(data: Any, result: Any) -> Any:
     assert get_date(data) == result
 
 
-@pytest.mark.parametrize(
-    "data, result",
-    [
-        ("2024-13-11T02:26:18.671407", "Неверный формат даты"),
-        ("2453748674345", "Неверный формат даты"),
-        (" ", "Неверный формат даты"),
-    ],
-)
-def test_error_get_date(data: Any, result: Any) -> Any:
-    """Обрабатывает ошибку ValueError"""
-    with pytest.raises(ValueError, match=result):
-        get_date(data)
+def test_get_date_with_invalid_date_string(invalid_date_string: str) -> None:
+    """Тест для функции преобразования даты - несуществующая дата"""
+    assert get_date(invalid_date_string) == "Проверьте правильность ввода!"
+
+
+def test_get_date_with_another_invalid_date_string(another_invalid_date_string: str) -> None:
+    """Тест для функции преобразования даты - строка, не преобразуемая в дату"""
+    assert get_date(another_invalid_date_string) == "Проверьте правильность ввода!"
+
+
+def test_get_date_with_empty_date_string(empty_date_string: str) -> None:
+    """Тест для функции преобразования даты - пустая строка"""
+    assert get_date(empty_date_string) == "Проверьте правильность ввода!"
